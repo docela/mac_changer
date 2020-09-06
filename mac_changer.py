@@ -6,7 +6,6 @@ import random
 
 # This function enables the user to state the interface to change the command line.
 
-
 def get_interface():
     parser = argparse.ArgumentParser(description="Change your MAC Address.")
     parser.add_argument(
@@ -14,8 +13,8 @@ def get_interface():
     args = parser.parse_args()
     return args.interface
 
-# This function creates six random hexadecimal numbers (removing the 0x) and puts it together to create a new MAC address
 
+# This function creates six random hexadecimal numbers (removing the 0x) and puts it together to create a new MAC address
 
 def mac_maker():
     mac_one = hex(random.randrange(16, 256))[2:].upper()
@@ -33,10 +32,10 @@ interface = get_interface()
 new_mac = mac_maker()
 
 
-# This is the function that actually runs the commands to change the MAC address in the shell.
+# This is the function that actually runs the commands to change the MAC address in the shell. It takes the previous functions as arguments.
+
 def change_mac(iface, mac):
     print(f"Changing the MAC address for {iface}")
-    # The actual process
     subprocess.run(["sudo", "ip", "link", "set",
                     "dev", iface, "down"], shell=True)
     subprocess.run(["sudo", "ip", "link", "set", "dev",
